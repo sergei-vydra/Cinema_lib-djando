@@ -18,9 +18,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from validformapp.views import form_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('movies.urls'), name='movies')
+    # path('', include('movies.urls'), name='movies'),
+    path('form_page/', form_view, name='form_view'),
 ]
 
 if settings.DEBUG:
