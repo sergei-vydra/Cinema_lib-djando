@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.urls import reverse
+from django.utils.timezone import now
 
 
 class Category(models.Model):
@@ -58,16 +59,16 @@ class Movie(models.Model):
     directors = models.ManyToManyField(Actor, verbose_name="directors", related_name="movie_director")
     actors = models.ManyToManyField(Actor, verbose_name="actors", related_name="movie_actor")
     genres = models.ManyToManyField(Genre, verbose_name="genres", related_name="movie_genre")
-    world_premiere = models.DateField(datetime.date.today())
-    budget = models.PositiveSmallIntegerField(default=0, help_text="USD")
-    fees_in_usa = models.PositiveSmallIntegerField(default=0, help_text="USD")
-    fees_in_world = models.PositiveSmallIntegerField(default=0, help_text="USD")
+    world_premiere = models.DateField(default=now)
+    budget = models.PositiveIntegerField(default=0, help_text="USD")
+    fees_in_usa = models.PositiveIntegerField(default=0, help_text="USD")
+    fees_in_world = models.PositiveIntegerField(default=0, help_text="USD")
     category = models.ForeignKey(Category, verbose_name="Category", on_delete=models.SET_NULL, null=True)
     url = models.SlugField(max_length=150, unique=True)
     draft = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return self.title
 
     def get_absolute_url(self):
         return reverse('movie_detail', kwargs={'slug': self.url})
@@ -85,7 +86,7 @@ class MovieShot(models.Model):
     movie = models.ForeignKey(Movie, verbose_name="Movie", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.title
 
     class Meta:
         verbose_name = "MovieShot"
@@ -97,7 +98,7 @@ class RatingStar(models.Model):
     value = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.value
 
     class Meta:
         verbose_name = "RatingStar"
