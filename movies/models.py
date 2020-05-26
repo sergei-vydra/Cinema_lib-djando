@@ -15,7 +15,7 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Catalogs"
+        verbose_name = "Catalog"
         verbose_name_plural = "Catalogs"
 
 
@@ -30,7 +30,7 @@ class Actor(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Actors and Directors"
+        verbose_name = "Actors and Director"
         verbose_name_plural = "Actors and Directors"
 
 
@@ -44,7 +44,7 @@ class Genre(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Genres"
+        verbose_name = "Genre"
         verbose_name_plural = "Genres"
 
 
@@ -74,7 +74,7 @@ class Movie(models.Model):
         return reverse('movie_detail', kwargs={'slug': self.url})
 
     class Meta:
-        verbose_name = "Movies"
+        verbose_name = "Movie"
         verbose_name_plural = "Movies"
 
 
