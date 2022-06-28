@@ -6,20 +6,20 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('movies', '0002_auto_20200522_1717'),
+        ("movies", "0002_auto_20200522_1717"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='actor',
-            options={'verbose_name': 'Actors and Director', 'verbose_name_plural': 'Actors and Directors'},
+            name="actor",
+            options={"verbose_name": "Actors and Director", "verbose_name_plural": "Actors and Directors"},
         ),
         migrations.AlterModelOptions(
-            name='genre',
-            options={'verbose_name': 'Genre', 'verbose_name_plural': 'Genres'},
+            name="genre",
+            options={"verbose_name": "Genre", "verbose_name_plural": "Genres"},
         ),
         migrations.AlterModelOptions(
-            name='movie',
-            options={'verbose_name': 'Movie', 'verbose_name_plural': 'Movies'},
+            name="movie",
+            options={"verbose_name": "Movie", "verbose_name_plural": "Movies"},
         ),
     ]

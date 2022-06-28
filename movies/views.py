@@ -16,12 +16,14 @@ from .forms import ReviewForm
 
 class MoviesView(ListView):
     """List of movies."""
+
     model = Movie
     queryset = Movie.objects.filter(draft=False)
 
 
 class MovieDetailView(DetailView):
     """Полное описание фильма"""
+
     model = Movie
     slug_field = "url"
 

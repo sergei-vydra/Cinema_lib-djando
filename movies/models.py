@@ -7,6 +7,7 @@ from django.utils.timezone import now
 
 class Category(models.Model):
     """Catalog data object."""
+
     name = models.CharField(max_length=255)
     description = models.TextField()
     url = models.SlugField(max_length=150, unique=True)
@@ -21,6 +22,7 @@ class Category(models.Model):
 
 class Actor(models.Model):
     """Actor data object."""
+
     name = models.CharField(max_length=100)
     age = models.PositiveSmallIntegerField(default=0)
     description = models.TextField()
@@ -36,6 +38,7 @@ class Actor(models.Model):
 
 class Genre(models.Model):
     """Genre data object."""
+
     name = models.CharField(max_length=100)
     description = models.TextField()
     url = models.SlugField(max_length=150, unique=True)
@@ -50,6 +53,7 @@ class Genre(models.Model):
 
 class Movie(models.Model):
     """Movie data object."""
+
     title = models.CharField(max_length=100)
     tagline = models.CharField(max_length=100, default="")
     description = models.TextField()
@@ -71,7 +75,7 @@ class Movie(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('movie_detail', kwargs={'slug': self.url})
+        return reverse("movie_detail", kwargs={"slug": self.url})
 
     class Meta:
         verbose_name = "Movie"
@@ -80,6 +84,7 @@ class Movie(models.Model):
 
 class MovieShot(models.Model):
     """MovieShots date object."""
+
     title = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to="movie_shots/")
@@ -95,6 +100,7 @@ class MovieShot(models.Model):
 
 class RatingStar(models.Model):
     """RatingStar date object."""
+
     value = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
@@ -107,6 +113,7 @@ class RatingStar(models.Model):
 
 class Rating(models.Model):
     """Rating data object."""
+
     ip = models.CharField(max_length=15)
     star = models.ForeignKey(RatingStar, on_delete=models.CASCADE, verbose_name="Star")
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, verbose_name="Movie", null=True)
@@ -121,10 +128,11 @@ class Rating(models.Model):
 
 class Review(models.Model):
     """Review data object."""
+
     email = models.EmailField()
     name = models.CharField(max_length=100)
     text = models.TextField(max_length=5000)
-    parent = models.ForeignKey('self', verbose_name="Parent", on_delete=models.SET_NULL, blank=True, null=True)
+    parent = models.ForeignKey("self", verbose_name="Parent", on_delete=models.SET_NULL, blank=True, null=True)
     movie = models.ForeignKey(Movie, verbose_name="Movie", on_delete=models.CASCADE)
 
     def __str__(self):
