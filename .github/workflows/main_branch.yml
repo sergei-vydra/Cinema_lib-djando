@@ -46,7 +46,9 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ${{ github.repository }}: Pipeline for ${{github.sha}} from ${{ github.actor }} finished with error!
+            ${{ github.repository }} repository.
+            ${{ github.actor }} created PR:
+            Pipeline for ${{github.sha}} python version ${{ matrix.python-version }} finished with error!
 
       - name: Send telegram message on pull-request (successful)
         if: ${{ success() }}
@@ -55,5 +57,6 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ${{ github.repository }}: Pipeline for ${{github.sha}} from ${{ github.actor }} finished successful
-            ${{ github.action }}
+            ${{ github.repository }} repository.
+            ${{ github.actor }} created PR:
+            Pipeline for ${{github.sha}} python version ${{ matrix.python-version }} finished successfully!
